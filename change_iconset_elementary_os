@@ -1,0 +1,39 @@
+#!/bin/bash
+
+array1=( 16 24 32 48 64 128)
+for i in "${array1[@]}" 
+do 
+    #Поиск и копирование всех из scable
+    # for file in `find /usr/share/icons/elementary-flat/apps/$i -type f -name "*.svg"`
+    # do
+    #     pt_f=$(dirname "$file")
+    #     f_name=${file##*/};
+    #     f_name=${f_name%.*};
+    #     for s_file in `find /usr/share/icons/elementary-flat/apps/scalable -type f -name "${f_name}.svg"`
+    #     do
+    #         echo "${s_file} скопирован";
+    #         cp ${s_file} ${pt_f}/;
+    #         rm ${pt_f}/${f_name}.svg;
+    #     done
+    # done
+    #Ресайз всех из папок
+    for file in `find /usr/share/icons/elementary-flat/apps/$i -type f -name "*.png"`
+    do
+        f_name=${file};
+        echo "${f_name} Перерабатывается"
+        convert $f_name -resize $ix$i\> $f_name;
+    done
+    #Удаление всех из scalable
+    # for file in `find /usr/share/icons/elementary-flat/apps/$i -type f -name "*.png"`
+    # do
+    #     pt_f=$(dirname "$file")
+    #     f_name=${file##*/};
+    #     f_name=${f_name%.*};
+    #     for s_file in `find /usr/share/icons/elementary-flat/apps/scalable -type f -name "${f_name}.png"`
+    #     do
+    #         rm ${s_file};
+    #         echo "${s_file} Удален";
+    #     done
+    # done
+done 
+exit 0
